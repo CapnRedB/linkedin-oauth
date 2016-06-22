@@ -10,7 +10,7 @@ var users = require('./routes/users');
 var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 
 var app = express();
-require('dotenv').load()
+var env = require('dotenv').load()
 	// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
