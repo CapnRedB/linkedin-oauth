@@ -10,8 +10,8 @@ var users = require('./routes/users');
 var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 
 var app = express();
-
-// view engine setup
+require('dotenv').load()
+	// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
@@ -25,9 +25,9 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 passport.use(new LinkedInStrategy({
-	clientID: '78ueyvhcxjonfh',
-	clientSecret: 'cLaiEwdaD3aSqjoV',
-	callbackURL: "http://localhost:3000/auth/linkedin/callback",
+	clientID: process.env.LINKEDIN_CLIENT_ID,
+	clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
+	callbackURL: process.env.HOST + "/auth/linkedin/callback",
 	scope: ['r_emailaddress', 'r_basicprofile'],
 }, function(accessToken, refreshToken, profile, done) {
 	// asynchronous verification, for effect...
